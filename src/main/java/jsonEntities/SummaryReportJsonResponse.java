@@ -53,6 +53,14 @@ public class SummaryReportJsonResponse {
     private String totalCallsOfComplaintsArabic;
     @JsonProperty("totalCallsOfComplaintsEnglish")
     private String totalCallsOfComplaintsEnglish;
+    @JsonProperty("totalNumberOfInsuredCustomerType")
+    private String totalNumberOfInsuredCustomerType = new String();
+    @JsonProperty("totalNumberOfBeneficiaryCustomerType")
+    private String totalNumberOfBeneficiaryCustomerType= new String();
+    @JsonProperty("totalNumberOfEmployerCustomerType")
+    private String totalNumberOfEmployerCustomerType= new String();
+    @JsonProperty("totalNumberOfPensionerCustomerType")
+    private String totalNumberOfPensionerCustomerType= new String();
 
     public SummaryReportJsonResponse() {
         callsAfterWorkingHours = "-1";
@@ -224,5 +232,39 @@ public class SummaryReportJsonResponse {
     public void setTotalCallsOfComplaintsEnglish(String totalCallsOfComplaintsEnglish) {
         this.totalCallsOfComplaintsEnglish = totalCallsOfComplaintsEnglish;
     }
+    @JsonProperty("totalNumberOfInsuredCustomerType")
+    public String getTotalNumberOfInsuredCustomerType() {
+        return totalNumberOfInsuredCustomerType;
+    }
+    @JsonProperty("totalNumberOfInsuredCustomerType")
+    public void setTotalNumberOfInsuredCustomerType(String totalNumberOfInsuredCustomerType) {
+        this.totalNumberOfInsuredCustomerType = totalNumberOfInsuredCustomerType;
+    }
 
+    @JsonProperty("totalNumberOfBeneficiaryCustomerType")
+    public String getTotalNumberOfBeneficiaryCustomerType() {
+        return totalNumberOfBeneficiaryCustomerType;
+    }
+    @JsonProperty("totalNumberOfBeneficiaryCustomerType")
+    public void setTotalNumberOfBeneficiaryCustomerType(String totalNumberOfBeneficiaryCustomerType) {
+        this.totalNumberOfBeneficiaryCustomerType = totalNumberOfBeneficiaryCustomerType;
+    }
+
+    @JsonProperty("totalNumberOfEmployerCustomerType")
+    public String getTotalNumberOfEmployerCustomerType() {
+        return totalNumberOfEmployerCustomerType;
+    }
+    @JsonProperty("totalNumberOfEmployerCustomerType")
+    public void setTotalNumberOfEmployerCustomerType(String totalNumberOfEmployerCustomerType) {
+        this.totalNumberOfEmployerCustomerType = totalNumberOfEmployerCustomerType;
+    }
+
+    @JsonProperty("totalNumberOfPensionerCustomerType")
+    public String getTotalNumberOfPensionerCustomerType() {
+        return totalNumberOfPensionerCustomerType;
+    }
+    @JsonProperty("totalNumberOfPensionerCustomerType")
+    public void setTotalNumberOfPensionerCustomerType(String totalNumberOfPensionerCustomerType) {
+        this.totalNumberOfPensionerCustomerType = totalNumberOfPensionerCustomerType;
+    }
 }

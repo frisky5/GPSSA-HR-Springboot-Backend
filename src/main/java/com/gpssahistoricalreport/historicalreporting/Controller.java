@@ -61,7 +61,10 @@ public class Controller {
         String totalNumberOfGeneralEnglish = "select count(*) from dbo.CALLSDetails where LEN(CALLINGNUMBER) > 5 AND isnumeric(CALLINGNUMBER)= 1 AND((CALLDATETIME1 BETWEEN '" + startDateTime + "' AND '" + endDateTime + "')) AND SKILLSET = 'General English'";
         String totalNumberOfComplaintsArabic = "select count(*) from dbo.CALLSDetails where LEN(CALLINGNUMBER) > 5 AND isnumeric(CALLINGNUMBER)= 1 AND((CALLDATETIME1 BETWEEN '" + startDateTime + "' AND '" + endDateTime + "')) AND SKILLSET = 'Complaints Arabic'";
         String totalNumberOfComplaintsEnglish = "select count(*) from dbo.CALLSDetails where LEN(CALLINGNUMBER) > 5 AND isnumeric(CALLINGNUMBER)= 1 AND((CALLDATETIME1 BETWEEN '" + startDateTime + "' AND '" + endDateTime + "')) AND SKILLSET = 'Complaints English'";
-
+        String totalNumberOfInsuredCustomerType = "SELECT count(DISTINCT UCID) FROM IVRCallsHistory WHERE CustomerType != '' AND CustomerType ='Insured' AND((CallEndDateTime BETWEEN '" + startDateTime + "' AND '" + endDateTime + "'))";
+        String totalNumberOfBeneficiaryCustomerType = "SELECT count(DISTINCT UCID) FROM IVRCallsHistory WHERE CustomerType != '' AND CustomerType ='Beneficiary' AND((CallEndDateTime BETWEEN '" + startDateTime + "' AND '" + endDateTime + "'))";
+        String totalNumberOfEmployerCustomerType = "SELECT count(DISTINCT UCID) FROM IVRCallsHistory WHERE CustomerType != '' AND CustomerType ='Employer' AND((CallEndDateTime BETWEEN '" + startDateTime + "' AND '" + endDateTime + "'))";
+        String totalNumberOfPensionerCustomerType = "SELECT count(DISTINCT UCID) FROM IVRCallsHistory WHERE CustomerType != '' AND CustomerType ='Pensioner' AND((CallEndDateTime BETWEEN '" + startDateTime + "' AND '" + endDateTime + "'))";
         //MSSQL Connection Props
         String connectionUrl = "jdbc:sqlserver://10.10.60.61:1433;databaseName=CustomDB;user=sa;password=Avaya123$";
         Connection connection = null;
@@ -249,6 +252,54 @@ public class Controller {
                     if (resultSet.getObject(1) != null) {
                         flag = true;
                         jsonResponseObject.setTotalCallsOfComplaintsEnglish(resultSet.getString(1).trim());
+                    }
+                }
+            }
+
+            //Total number Beneficiary
+            resultSet = statement.executeQuery(totalNumberOfBeneficiaryCustomerType);
+            if (resultSet.next() != false) {
+                resultSet.beforeFirst();
+                while (resultSet.next()) {
+                    if (resultSet.getObject(1) != null) {
+                        flag = true;
+                        jsonResponseObject.setTotalNumberOfBeneficiaryCustomerType(resultSet.getString(1).trim());
+                    }
+                }
+            }
+
+            //Total number Employer
+            resultSet = statement.executeQuery(totalNumberOfEmployerCustomerType);
+            if (resultSet.next() != false) {
+                resultSet.beforeFirst();
+                while (resultSet.next()) {
+                    if (resultSet.getObject(1) != null) {
+                        flag = true;
+                        jsonResponseObject.setTotalNumberOfEmployerCustomerType(resultSet.getString(1).trim());
+                    }
+                }
+            }
+
+            //Total number insured
+            resultSet = statement.executeQuery(totalNumberOfInsuredCustomerType);
+            if (resultSet.next() != false) {
+                resultSet.beforeFirst();
+                while (resultSet.next()) {
+                    if (resultSet.getObject(1) != null) {
+                        flag = true;
+                        jsonResponseObject.setTotalNumberOfInsuredCustomerType(resultSet.getString(1).trim());
+                    }
+                }
+            }
+
+            //Total number pensioner
+            resultSet = statement.executeQuery(totalNumberOfPensionerCustomerType);
+            if (resultSet.next() != false) {
+                resultSet.beforeFirst();
+                while (resultSet.next()) {
+                    if (resultSet.getObject(1) != null) {
+                        flag = true;
+                        jsonResponseObject.setTotalNumberOfPensionerCustomerType(resultSet.getString(1).trim());
                     }
                 }
             }
